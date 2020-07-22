@@ -1,0 +1,21 @@
+<h2>exercice 4</h2>
+
+<p>Quelle est la rubrique active ?</p>
+
+<h4 #valueRubrique1 (click)="myRubrique(valueRubrique1.innerHTML)">Rubrique 1</h4>
+<div *ngIf="methode2(valueRubrique1.innerHTML)">
+  <h5>Titre de la rubrique 1</h5>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien nulla, laoreet consectetur urna et, elementum suscipit magna. Aliquam erat volutpat. Quisque felis purus, tempus at accumsan quis, molestie in elit.</p>
+</div>
+
+<h4 #valueRubrique2 (click)="myRubrique(valueRubrique2.innerHTML)">Rubrique 2</h4>
+<div *ngIf="methode2(valueRubrique2.innerHTML)">
+  <h5>Titre de la rubrique 2</h5>
+  <p>Aliquam erat volutpat. Quisque felis purus, tempus at accumsan quis, molestie in elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien nulla, laoreet consectetur urna et, elementum suscipit magna.</p>
+</div>
+
+<h4 #valueRubrique3 (click)="myRubrique(valueRubrique3.innerHTML)">Rubrique 3</h4>
+<div *ngIf="methode2(valueRubrique3.innerHTML)">
+  <h5>Titre de la rubrique 3</h5>
+  <p>Sed ligula libero, tristique id vestibulum vel, imperdiet ac est. Nulla venenatis posuere neque eget venenatis. Nulla congue est neque, nec dapibus tellus gravida ac. Donec ligula massa, molestie at placerat eu, hendrerit sed eros. In elementum ipsum sit amet consequat fringilla.</p>
+</div>

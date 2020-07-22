@@ -1,0 +1,5 @@
+<h2>exercice 8</h2>
+
+<div *ngFor="let car of cars">
+  {{ car.model | titlecase }}, {{ car.power | uppercase }}, {{ car.price | currency:'EUR' }}, {{ car.fabricationDate | date:'shortDate' }}
+</div>

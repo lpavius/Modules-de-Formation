@@ -1,0 +1,10 @@
+<h1>2-proprietes-evenements</h1>
+<h2>exercice 1</h2>
+<img [src]="chien" alt="">
+<!-- <img [src]="chats[0]" alt="">
+<img [src]="chats[1]" alt="">
+<img [src]="chats[2]" alt=""> -->
+<div *ngFor="let item of chats">
+  <img [src]="item" alt="">
+</div>
+

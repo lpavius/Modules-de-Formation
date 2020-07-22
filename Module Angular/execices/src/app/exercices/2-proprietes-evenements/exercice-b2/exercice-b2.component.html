@@ -1,0 +1,9 @@
+<h2>exercice 2</h2>
+<div [ngClass]="{'pair': (nombre%2) === 0 ,
+                 'impair': (nombre%2) !== 0,
+                 'sup0': nombre > 0,
+                 'inf0': nombre < 0,
+                 'egale0': nombre === 0}">
+  <p>{{ nombre }}</p>
+</div>
+<input type="range" name="" id="" min="-100" max="100" [(ngModel)]="nombre" >
