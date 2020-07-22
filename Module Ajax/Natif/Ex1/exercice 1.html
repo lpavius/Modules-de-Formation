@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX avec XHR</title>
+    <script>
+        "use strict";
+        window.addEventListener("DOMContentLoaded", function() {
+            const personChoose = document.getElementById("personChoose");
+            const selectElement = document.getElementsByTagName("select")[0];
+            const optionElement = document.getElementsByTagName("option");
+            const formElement = window.document.getElementsByTagName("form")[0];
+
+            /** GET **/
+            const url = "http://localhost:8082/persons/";
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", url);
+            xhr.addEventListener("load", function() {
+                if( 200 === xhr.status) {
+                    const persons = JSON.parse(xhr.responseText);
+                    // console.log(persons);
+                    persons.forEach(person => {
+                        const option = document.createElement("option");
+                        option.value = person.id;
+                        // console.log(option.value);
+                        option.innerHTML = `${person.firstName} ${person.lastName}`;
+                        selectElement.appendChild(option);
+                    });
+                    selectElement.addEventListener("change", function() {
+                        const personSelected = optionElement[this.options.selectedIndex];
+                        // console.dir(personSelected);
+                        if (!isNaN(personSelected.value)) {
+                            personChoose.innerHTML = `<p>You choose ${personSelected.label} !!!!</p>`;  
+                        } else {
+                            personChoose.innerHTML = "";  
+                        }
+                    })
+                }
+            })
+            xhr.send();
+
+            /** POST **/
+            formElement.addEventListener("submit", function(submitEvent){
+                submitEvent.preventDefault();
+                const inputElements = window.document.getElementsByTagName("input");
+                const formData = new FormData()
+                const f_name = inputElements[0].value;
+                const l_name = inputElements[1].value;
+                const b_date = inputElements[2].value;
+                
+                const url = "http://localhost:8082/person/"
+                const json = JSON.stringify({
+                    firstName: f_name,
+                    lastName: l_name,
+                    birthDate: b_date
+                });
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", url);
+                xhr.setRequestHeader("Content-type", "application/json")
+                xhr.send(json);
+            })   
+        })
+    </script>
+</head>
+<body>
+    <h1>Requête GET Asynchrone avec XHR</h1>
+    <div>
+        <p>Choose a person: </p>
+        <select name="" id="">
+            <option value="-">-- Select a person --</option>
+        </select>
+        <div id="personChoose"></div>
+    </div>
+    <h1>Requête POST Asynchrone avec XHR</h1>
+    <div>
+        <form action="POST">
+            <p>Firstname: <input type="text" name="region"></p>
+            <p>Lastname: <input type="text" name="city"></p>
+            <p>Birthdate: <input type="date" name="birthdate"></p>
+            <input type="submit" value="Save">     
+        </form>
+    </div> 
+</body>
+</html>
